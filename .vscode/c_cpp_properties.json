@@ -1,0 +1,80 @@
+{
+    "configurations": [
+        {
+            "name": "!!! WARNING !!! AUTO-GENERATED FILE, PLEASE DO NOT MODIFY IT AND USE https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags"
+        },
+        {
+            "name": "Win32",
+            "includePath": [
+                "c:/Users/try_h/Desktop/Marlin/02_THiNK_X1_BLT_2.0.5/THINK_X1_BLT_2.0.5/include",
+                "c:/Users/try_h/Desktop/Marlin/02_THiNK_X1_BLT_2.0.5/THINK_X1_BLT_2.0.5/Marlin",
+                "c:/Users/try_h/Desktop/Marlin/02_THiNK_X1_BLT_2.0.5/THINK_X1_BLT_2.0.5/.pio/libdeps/mega2560/TMC26XStepper",
+                "c:/Users/try_h/Desktop/Marlin/02_THiNK_X1_BLT_2.0.5/THINK_X1_BLT_2.0.5/.pio/libdeps/mega2560/SlowSoftI2CMaster",
+                "c:/Users/try_h/Desktop/Marlin/02_THiNK_X1_BLT_2.0.5/THINK_X1_BLT_2.0.5/.pio/libdeps/mega2560/SailfishRGB_LED",
+                "c:/Users/try_h/Desktop/Marlin/02_THiNK_X1_BLT_2.0.5/THINK_X1_BLT_2.0.5/.pio/libdeps/mega2560/SailfishLCD",
+                "c:/Users/try_h/Desktop/Marlin/02_THiNK_X1_BLT_2.0.5/THINK_X1_BLT_2.0.5/.pio/libdeps/mega2560/Arduino-L6470/src",
+                "c:/Users/try_h/Desktop/Marlin/02_THiNK_X1_BLT_2.0.5/THINK_X1_BLT_2.0.5/.pio/libdeps/mega2560/LiquidTWI2",
+                "c:/Users/try_h/Desktop/Marlin/02_THiNK_X1_BLT_2.0.5/THINK_X1_BLT_2.0.5/.pio/libdeps/mega2560/Adafruit_MAX31865",
+                "c:/Users/try_h/Desktop/Marlin/02_THiNK_X1_BLT_2.0.5/THINK_X1_BLT_2.0.5/.pio/libdeps/mega2560/U8glib-HAL_ID1932/src",
+                "c:/Users/try_h/Desktop/Marlin/02_THiNK_X1_BLT_2.0.5/THINK_X1_BLT_2.0.5/.pio/libdeps/mega2560/Adafruit NeoPixel_ID28",
+                "c:/Users/try_h/Desktop/Marlin/02_THiNK_X1_BLT_2.0.5/THINK_X1_BLT_2.0.5/.pio/libdeps/mega2560/TMCStepper_ID5513/src",
+                "C:/Users/try_h/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                "C:/Users/try_h/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                "c:/Users/try_h/Desktop/Marlin/02_THiNK_X1_BLT_2.0.5/THINK_X1_BLT_2.0.5/.pio/libdeps/mega2560/LiquidCrystal_ID136",
+                "C:/Users/try_h/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                "C:/Users/try_h/.platformio/packages/framework-arduino-avr/cores/arduino",
+                "C:/Users/try_h/.platformio/packages/framework-arduino-avr/variants/mega",
+                "C:/Users/try_h/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                "C:/Users/try_h/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                "C:/Users/try_h/.platformio/packages/tool-unity",
+                ""
+            ],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true,
+                "path": [
+                    "c:/Users/try_h/Desktop/Marlin/02_THiNK_X1_BLT_2.0.5/THINK_X1_BLT_2.0.5/include",
+                    "c:/Users/try_h/Desktop/Marlin/02_THiNK_X1_BLT_2.0.5/THINK_X1_BLT_2.0.5/Marlin",
+                    "c:/Users/try_h/Desktop/Marlin/02_THiNK_X1_BLT_2.0.5/THINK_X1_BLT_2.0.5/.pio/libdeps/mega2560/TMC26XStepper",
+                    "c:/Users/try_h/Desktop/Marlin/02_THiNK_X1_BLT_2.0.5/THINK_X1_BLT_2.0.5/.pio/libdeps/mega2560/SlowSoftI2CMaster",
+                    "c:/Users/try_h/Desktop/Marlin/02_THiNK_X1_BLT_2.0.5/THINK_X1_BLT_2.0.5/.pio/libdeps/mega2560/SailfishRGB_LED",
+                    "c:/Users/try_h/Desktop/Marlin/02_THiNK_X1_BLT_2.0.5/THINK_X1_BLT_2.0.5/.pio/libdeps/mega2560/SailfishLCD",
+                    "c:/Users/try_h/Desktop/Marlin/02_THiNK_X1_BLT_2.0.5/THINK_X1_BLT_2.0.5/.pio/libdeps/mega2560/Arduino-L6470/src",
+                    "c:/Users/try_h/Desktop/Marlin/02_THiNK_X1_BLT_2.0.5/THINK_X1_BLT_2.0.5/.pio/libdeps/mega2560/LiquidTWI2",
+                    "c:/Users/try_h/Desktop/Marlin/02_THiNK_X1_BLT_2.0.5/THINK_X1_BLT_2.0.5/.pio/libdeps/mega2560/Adafruit_MAX31865",
+                    "c:/Users/try_h/Desktop/Marlin/02_THiNK_X1_BLT_2.0.5/THINK_X1_BLT_2.0.5/.pio/libdeps/mega2560/U8glib-HAL_ID1932/src",
+                    "c:/Users/try_h/Desktop/Marlin/02_THiNK_X1_BLT_2.0.5/THINK_X1_BLT_2.0.5/.pio/libdeps/mega2560/Adafruit NeoPixel_ID28",
+                    "c:/Users/try_h/Desktop/Marlin/02_THiNK_X1_BLT_2.0.5/THINK_X1_BLT_2.0.5/.pio/libdeps/mega2560/TMCStepper_ID5513/src",
+                    "C:/Users/try_h/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                    "C:/Users/try_h/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                    "c:/Users/try_h/Desktop/Marlin/02_THiNK_X1_BLT_2.0.5/THINK_X1_BLT_2.0.5/.pio/libdeps/mega2560/LiquidCrystal_ID136",
+                    "C:/Users/try_h/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                    "C:/Users/try_h/.platformio/packages/framework-arduino-avr/cores/arduino",
+                    "C:/Users/try_h/.platformio/packages/framework-arduino-avr/variants/mega",
+                    "C:/Users/try_h/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                    "C:/Users/try_h/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                    "C:/Users/try_h/.platformio/packages/tool-unity",
+                    ""
+                ]
+            },
+            "defines": [
+                "PLATFORMIO=40304",
+                "ARDUINO_AVR_MEGA2560",
+                "__MARLIN_FIRMWARE__",
+                "F_CPU=16000000L",
+                "ARDUINO_ARCH_AVR",
+                "ARDUINO=10808",
+                "__AVR_ATmega2560__",
+                ""
+            ],
+            "intelliSenseMode": "clang-x64",
+            "cStandard": "c11",
+            "cppStandard": "c++11",
+            "compilerPath": "C:/Users/try_h/.platformio/packages/toolchain-atmelavr/bin/avr-gcc.exe",
+            "compilerArgs": [
+                "-mmcu=atmega2560",
+                ""
+            ]
+        }
+    ],
+    "version": 4
+}
