@@ -1,4 +1,8 @@
 # Configurations
+
+Source firmware for Artillery Sidewinder X1, running stock mainboard, but fit with BL Touch. 
+ABL (Bilinear) activated among other small tweaks. BL Touch should be wired up as per the Waggster method (into the Extruder LED Pins), and recomend using the Waggster files to flash the TFT. 
+
 Pre-tested Configurations for Marlin Firmware 2.0.5
 
 Marlin Firmware is configured using two files:
