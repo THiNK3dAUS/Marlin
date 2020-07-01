@@ -15,8 +15,10 @@
 
 #if (__cplusplus == 201703L) && defined(__has_include)
 	#define SW_CAPABLE_PLATFORM __has_include(<SoftwareSerial.h>)
+#elif defined(__AVR__) || defined(TARGET_LPC1768) || defined(ARDUINO_ARCH_STM32)
+	#define SW_CAPABLE_PLATFORM true
 #else
-	#define SW_CAPABLE_PLATFORM defined(__AVR__) || defined(TARGET_LPC1768) || defined(ARDUINO_ARCH_STM32)
+	#define SW_CAPABLE_PLATFORM false
 #endif
 
 #if SW_CAPABLE_PLATFORM
@@ -46,7 +48,7 @@
 #define INIT2224_REGISTER(REG) TMC2224_n::REG##_t REG##_register = TMC2224_n::REG##_t
 #define SET_ALIAS(TYPE, DRIVER, NEW, ARG, OLD) TYPE (DRIVER::*NEW)(ARG) = &DRIVER::OLD
 
-#define TMCSTEPPER_VERSION 0x000602 // v0.6.2
+#define TMCSTEPPER_VERSION 0x000701 // v0.7.1
 
 class TMCStepper {
 	public:
@@ -329,6 +331,10 @@ class TMC2130Stepper : public TMCStepper {
 		uint8_t status_response;
 
 	protected:
+		void beginTransaction();
+		void endTransaction();
+		uint8_t transfer(const uint8_t data);
+		void transferEmptyBytes(const uint8_t n);
 		void write(uint8_t addressByte, uint32_t config);
 		uint32_t read(uint8_t addressByte);
 
@@ -813,9 +819,11 @@ class TMC2208Stepper : public TMCStepper {
 			TMC2208Stepper(uint16_t SW_RX_pin, uint16_t SW_TX_pin, float RS) :
 				TMC2208Stepper(SW_RX_pin, SW_TX_pin, RS, TMC2208_SLAVE_ADDR)
 				{}
+
+			__attribute__((deprecated("Boolean argument has been deprecated and does nothing")))
 			TMC2208Stepper(uint16_t SW_RX_pin, uint16_t SW_TX_pin, float RS, bool) :
 				TMC2208Stepper(SW_RX_pin, SW_TX_pin, RS, TMC2208_SLAVE_ADDR)
-				{}
+				{};
 		#else
 			TMC2208Stepper(uint16_t, uint16_t, float) = delete; // Your platform does not currently support Software Serial
 		#endif
@@ -823,7 +831,7 @@ class TMC2208Stepper : public TMCStepper {
 		void push();
 		void begin();
 		#if SW_CAPABLE_PLATFORM
-			void beginSerial(uint32_t baudrate);
+			void beginSerial(uint32_t baudrate) __attribute__((weak));
 		#else
 			void beginSerial(uint32_t) = delete; // Your platform does not currently support Software Serial
 		#endif
@@ -990,6 +998,13 @@ class TMC2208Stepper : public TMCStepper {
 
 		SSwitch *sswitch = nullptr;
 
+		int available();
+		void preWriteCommunication();
+		void preReadCommunication();
+		int16_t serial_read();
+		uint8_t serial_write(const uint8_t data);
+		void postWriteCommunication();
+		void postReadCommunication();
 		void write(uint8_t, uint32_t);
 		uint32_t read(uint8_t);
 		const uint8_t slave_address;
@@ -1000,8 +1015,7 @@ class TMC2208Stepper : public TMCStepper {
 		static constexpr uint8_t abort_window = 5;
 		static constexpr uint8_t max_retries = 2;
 
-		template<typename SERIAL_TYPE>
-		uint64_t _sendDatagram(SERIAL_TYPE &, uint8_t [], const uint8_t, uint16_t);
+		uint64_t _sendDatagram(uint8_t [], const uint8_t, uint16_t);
 };
 
 class TMC2209Stepper : public TMC2208Stepper {
