@@ -48,9 +48,9 @@
 //#define GENIUS 
 
 /* Automatic Bed Leveling with BL Touch #define BLTOUCH and associated definitions. Disabling this enables Manual Mesh leveling */
-//#define BLTOUCH 
+#define BLTOUCH 
   #ifdef BLTOUCH
-    #define NOZZLE_TO_PROBE_OFFSET { 31, -31, 0 }   
+    #define NOZZLE_TO_PROBE_OFFSET { 28, -31, -3.0 }   
     #define WAGGSTER_MOD_WIRING //BLTOUCH to Z+ Z_MAX_PIN (D19) Waggster Mod style wiring, comment out to use Z_MIN_PIN (D18)  
   #endif
 
@@ -76,17 +76,17 @@
 //#define THERMISTOR_HISENS_300 
 
 /*OVERRIDE HARDCODED DEFAULTS AND SET YOUR OWN MOTOR STEPS HERE*/
-//#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80.13, 80.18, 400, 445 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80.121, 80.121, 399.778, 455.7 }
 
     /*OVERRIDE HARDCODED DEFAULTS FOR HOTEND PID VALUES, G2 Sidewinder X-1 V3 6/27-2020*/
-    /*#define DEFAULT_Kp 29.12
-    #define DEFAULT_Ki 2.52
-    #define DEFAULT_Kd 84.09//*/
+    #define DEFAULT_Kp 12.60
+    #define DEFAULT_Ki 0.95
+    #define DEFAULT_Kd 41.81//*/
     
     /*OVERRIDE HARDCODED DEFAULTS FOR BED PID VALUES, G2 Sidewinder X-1 V3 6/27-2020*/
-    /*#define DEFAULT_bedKp 47.93 
-    #define DEFAULT_bedKi 8.86 
-    #define DEFAULT_bedKd 172.76//*/
+    #define DEFAULT_bedKp 95.83
+    #define DEFAULT_bedKi 10.63     
+    #define DEFAULT_bedKd 215.87//*/
 
 /* InsanityAutomation Fork Options:*/
 //#define GraphicalLCD // Will work next to MKS TFT
@@ -545,14 +545,14 @@
 #else
   #define HEATER_0_MAXTEMP 300
 #endif
-#define HEATER_1_MAXTEMP 275
+#define HEATER_1_MAXTEMP 295+15 //275
 #define HEATER_2_MAXTEMP 275
 #define HEATER_3_MAXTEMP 275
 #define HEATER_4_MAXTEMP 275
 #define HEATER_5_MAXTEMP 275
 #define HEATER_6_MAXTEMP 275
 #define HEATER_7_MAXTEMP 275
-#define BED_MAXTEMP      150
+#define BED_MAXTEMP      120 //150
 
 //===========================================================================
 //============================= PID Settings ================================
@@ -857,7 +857,7 @@
 #ifdef ZMIN_SENSOR_AS_PROBE
   //#define ENDSTOP_INTERRUPTS_FEATURE
 #else
-  #define ENDSTOP_INTERRUPTS_FEATURE
+  //#define ENDSTOP_INTERRUPTS_FEATURE
 #endif
 /**
  * Endstop Noise Threshold
@@ -919,7 +919,7 @@
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 300, 300, 50, 70 }
+#define DEFAULT_MAX_FEEDRATE          { 200, 200, 10, 80 }
 
 #define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
@@ -932,7 +932,7 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 150, 10000 }
+#define DEFAULT_MAX_ACCELERATION      { 1500, 1500, 1500, 3000 }
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
@@ -947,7 +947,7 @@
  *   M204 R    Retract Acceleration
  *   M204 T    Travel Acceleration
  */
-#define DEFAULT_ACCELERATION          800    // X, Y, Z and E acceleration for printing moves
+#define DEFAULT_ACCELERATION          1000    // X, Y, Z and E acceleration for printing moves
 #define DEFAULT_RETRACT_ACCELERATION  10000    // E acceleration for retracts
 #define DEFAULT_TRAVEL_ACCELERATION   3000    // X, Y, Z acceleration for travel (non printing) moves
 
@@ -959,10 +959,10 @@
  * When changing speed and direction, if the difference is less than the
  * value set here, it may happen instantaneously.
  */
-//#define CLASSIC_JERK
+#define CLASSIC_JERK
 #if ENABLED(CLASSIC_JERK)
-  #define DEFAULT_XJERK 10.0
-  #define DEFAULT_YJERK 5.0
+  #define DEFAULT_XJERK 6.0
+  #define DEFAULT_YJERK 6.0
   #define DEFAULT_ZJERK  0.3
 
   //#define TRAVEL_EXTRA_XYJERK 0.0     // Additional jerk allowance for all travel moves
@@ -997,7 +997,7 @@
  * See https://github.com/synthetos/TinyG/wiki/Jerk-Controlled-Motion-Explained
  */
 
- //#define S_CURVE_ACCELERATION
+ #define S_CURVE_ACCELERATION
  
 //===========================================================================
 //============================= Z Probe Options =============================
@@ -1630,7 +1630,7 @@
  * Useful to retract or move the Z probe out of the way.
  */
 #ifdef BLTOUCH
-  #define Z_PROBE_END_SCRIPT "G90\nG1 Z10 F3000\nG1 F6000 X2 Y2\n" //G1 Z0.5\nG1 Z10"
+  //#define Z_PROBE_END_SCRIPT "G90\nG1 Z10 F3000\nG1 F6000 X2 Y2\n" //G1 Z0.5\nG1 Z10"
 #endif
 
 // @section homing
@@ -1668,7 +1668,7 @@
 
 // Homing speeds (mm/m)
 #define HOMING_FEEDRATE_XY (60*60)
-#define HOMING_FEEDRATE_Z  (12*60)
+#define HOMING_FEEDRATE_Z  (20*60)
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS
