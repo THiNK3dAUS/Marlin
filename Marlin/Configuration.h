@@ -36,7 +36,7 @@
  * Advanced settings can be found in Configuration_adv.h
  *
  */
-#define CONFIGURATION_H_VERSION 020006//Merged with InsanityAutomation branch. Last changed working on 1.3.28
+#define CONFIGURATION_H_VERSION 020006//Merged with InsanityAutomation branch. Last changed working on 1.3.34
 
 //===========================================================================
 //============================= Artillery Options ===========================
@@ -673,7 +673,7 @@
   //#define PID_DEBUG             // Sends debug data to the serial port. Use 'M303 D' to toggle activation.
   //#define PID_OPENLOOP          // Puts PID in open loop. M104/M140 sets the output power from 0 to PID_MAX
   //#define SLOW_PWM_HEATERS      // PWM with very low frequency (roughly 0.125Hz=8s) and minimum state time of approximately 1s useful for heaters driven by a relay
-  #define PID_FUNCTIONAL_RANGE 10 // If the temperature difference between the target temperature and the actual temperature
+  //duplicate line/////#define PID_FUNCTIONAL_RANGE 10 // If the temperature difference between the target temperature and the actual temperature
                                   // is more than PID_FUNCTIONAL_RANGE then the PID will be shut off and the heater will be set to min/max.
 #endif
 
@@ -854,11 +854,9 @@
 
 // Enable this feature if all enabled endstop pins are interrupt-capable.
 // This will remove the need to poll the interrupt pins, saving many CPU cycles.
-#ifdef ZMIN_SENSOR_AS_PROBE
-  //#define ENDSTOP_INTERRUPTS_FEATURE
-#else
-  //#define ENDSTOP_INTERRUPTS_FEATURE
 #endif
+  //#define ENDSTOP_INTERRUPTS_FEATURE //fix 1.3.32
+
 /**
  * Endstop Noise Threshold
  *
@@ -1188,8 +1186,11 @@
 #define Z_PROBE_SPEED_FAST HOMING_FEEDRATE_Z
 
 // Feedrate (mm/m) for the "accurate" probe of each point
-#define Z_PROBE_SPEED_SLOW (Z_PROBE_SPEED_FAST / 3)
-
+#ifdef BLTOUCH
+  #define Z_PROBE_SPEED_SLOW (Z_PROBE_SPEED_FAST / 3)
+#else
+  #define Z_PROBE_SPEED_SLOW (Z_PROBE_SPEED_FAST / 2)
+#endif
 /**
  * Multiple Probing
  *
@@ -1350,10 +1351,10 @@
 
 //#define Z_HOMING_HEIGHT  4      // (mm) Minimal Z height before homing (G28) for Z clearance above the bed, clamps, ...
                                   // Be sure to have this much clearance over your Z_MAX_POS to prevent grinding.
-#ifdef ZMIN_SENSOR_AS_PROBE
-  //#define Z_AFTER_HOMING  10      // (mm) Height to move to after homing Z //fix keep an eye on new behavior
-#else
+#ifdef BLTOUCH
   #define Z_AFTER_HOMING  10      // (mm) Height to move to after homing Z //fix keep an eye on new behavior
+#else
+  //#define Z_AFTER_HOMING  10      // (mm) Height to move to after homing Z //fix keep an eye on new behavior
 #endif
 // Direction of endstops when homing; 1=MAX, -1=MIN
 // :[-1,1]
@@ -1415,7 +1416,7 @@
 #endif
 
 #if EITHER(MIN_SOFTWARE_ENDSTOPS, MAX_SOFTWARE_ENDSTOPS)
-  #define SOFT_ENDSTOPS_MENU_ITEM  // Enable/Disable software endstops from the LCD //fix waaste fo resources?
+  //#define SOFT_ENDSTOPS_MENU_ITEM  // Enable/Disable software endstops from the LCD
 #endif
 
 /**
@@ -1630,7 +1631,7 @@
  * Useful to retract or move the Z probe out of the way.
  */
 #ifdef BLTOUCH
-  //#define Z_PROBE_END_SCRIPT "G90\nG1 Z10 F3000\nG1 F6000 X2 Y2\n" //G1 Z0.5\nG1 Z10"
+  //#define Z_PROBE_END_SCRIPT "G90\nG1 Z10 F3000\nG1 F9000 X2 Y2\n" //G1 Z0.5\nG1 Z10"
 #endif
 
 // @section homing
@@ -1946,7 +1947,7 @@
  *
  * :['JAPANESE', 'WESTERN', 'CYRILLIC']
  */
-#define DISPLAY_CHARSET_HD44780 WESTERN
+#define DISPLAY_CHARSET_HD44780 JAPANESE
 
 /**
  * Info Screen Style (0:Classic, 1:Prusa)
@@ -1990,7 +1991,7 @@
  * just remove some extraneous menu items to recover space.
  */
 //#define NO_LCD_MENUS
-//#define SLIM_LCD_MENUS
+#define SLIM_LCD_MENUS
 
 //
 // ENCODER SETTINGS
@@ -2075,8 +2076,9 @@
 //
 // Note: Usually sold with a white PCB.
 //
-#define REPRAP_DISCOUNT_SMART_CONTROLLER
-
+#if DISABLED(GraphicalLCD)
+  #define REPRAP_DISCOUNT_SMART_CONTROLLER
+#endif
 //
 // Original RADDS LCD Display+Encoder+SDCardReader
 // http://doku.radds.org/dokumentation/lcd-display/
